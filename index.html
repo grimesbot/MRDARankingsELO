@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roller Derby Elo Rankings</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Roller Derby Elo Rankings</h1>
+  <div id="mrda">
+    <h2>MRDA</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Team</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody id="rankings">
+        <!-- Rankings will be inserted here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Dropdown selectors and button for expected score -->
+  <div id="expected-score">
+    <h2>Calculate Expected Score</h2>
+    <label for="team1">Select Team 1:</label>
+    <select id="team1"></select>
+    <br><br>
+    <label for="team2">Select Team 2:</label>
+    <select id="team2"></select>
+    <br><br>
+    <button onclick="calculateExpectedScore()">Calculate Expected Score</button>
+    <p id="score-result"></p>
+  </div>
+
+  <!-- Section for hypothetical score adjustment -->
+  <div id="hypothetical-adjustment">
+    <h2>Hypothetical Score Adjustment</h2>
+    <label for="hypo-team1">Select Team 1:</label>
+    <select id="hypo-team1"></select>
+    <br><br>
+    <label for="hypo-team1-score">Team 1 Score:</label>
+    <input type="number" id="hypo-team1-score" />
+    <br><br>
+    <label for="hypo-team2">Select Team 2:</label>
+    <select id="hypo-team2"></select>
+    <br><br>
+    <label for="hypo-team2-score">Team 2 Score:</label>
+    <input type="number" id="hypo-team2-score" />
+    <br><br>
+    <button onclick="calculateHypotheticalAdjustment()">Calculate Adjustment</button>
+    <p id="adjustment-result"></p>
+  </div>
+
+  <!-- Section for viewing last 5 games of a selected team -->
+  <div id="team-history">
+    <h2>View Team's Last 5 Games</h2>
+    <label for="history-team">Select Team:</label>
+    <select id="history-team"></select>
+    <br><br>
+    <button onclick="showTeamHistory('primary')">Show Last 5 A Games</button>
+    <br><br>
+    <button onclick="showTeamHistory('secondary')">Show Last 5 B Games</button>
+    <table id="history-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Opponent</th>
+          <th>Score</th>
+          <th>Elo Change</th>
+        </tr>
+      </thead>
+      <tbody id="history-body">
+        <!-- Game history will be inserted here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="elo.js"></script>
+</body>
+
+</html>
