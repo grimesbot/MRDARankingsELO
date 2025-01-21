@@ -233,7 +233,7 @@ async function main() {
     rollerDerbyTeams['17908'] = new RollerDerbyTeam('Disorder', 792, 390, '17908');
     rollerDerbyTeams['17909'] = new RollerDerbyTeam('Borderland Bandits Roller Derby', 743, 400, '17909');
     rollerDerbyTeams['17910'] = new RollerDerbyTeam('Nordicks de Touraine', 600, 300, '17910');
-    rollerDerbyTeams['17911'] = new RollerDerbyTeam('Roller Derby Toulouse', 600, 300, '17911');
+    rollerDerbyTeams['17911'] = new RollerDerbyTeam('Roller Derby Toulouse', 825, 300, '17911');
 
 
     function getTeamRatingById(teamId) {
