@@ -363,14 +363,21 @@ async function main() {
 // Function to calculate and display the expected score between two teams
 function calculateExpectedScore() {
     const team1Id = document.getElementById('team1').value;
-    const team2Id = document.getElementById('team2').value;
+    const team1Charter = document.getElementById('team1-charter').value;
+    const team2Id = document.getElementById('team2').value; 
+    const team2Charter = document.getElementById('team2-charter').value;
 
     const team1 = rollerDerbyTeams[team1Id];
     const team2 = rollerDerbyTeams[team2Id];
 
     if (team1 && team2) {
         const eloSystem = new RollerDerbyElo(rollerDerbyTeams);
-        const expectedScore1 = eloSystem.expectedScore(team1.ratingA, team2.ratingA);
+        // Select the correct rating based on team1Charter and team2Charter
+        const team1Rating = team1Charter === "A" ? team1.ratingA : team1.ratingB;
+        const team2Rating = team2Charter === "A" ? team2.ratingA : team2.ratingB;
+
+        // Use the selected ratings in the Elo system
+        const expectedScore1 = eloSystem.expectedScore(team1Rating, team2Rating);
         const expectedScore2 = 1 - expectedScore1;
 
         document.getElementById('score-result').innerText = `Expected Score: ${team1.teamName} ${expectedScore1.toFixed(2)} - ${team2.teamName} ${expectedScore2.toFixed(2)}`;
@@ -382,8 +389,10 @@ function calculateExpectedScore() {
 // Function to calculate and display the hypothetical rating adjustment
 function calculateHypotheticalAdjustment() {
     const team1Id = document.getElementById('hypo-team1').value;
+    const team1Charter = document.getElementById('hypo-team1-charter').value;
     const team1Score = parseInt(document.getElementById('hypo-team1-score').value, 10);
-    const team2Id = document.getElementById('hypo-team2').value;
+    const team2Id = document.getElementById('hypo-team2').value; 
+    const team2Charter = document.getElementById('hypo-team2-charter').value;
     const team2Score = parseInt(document.getElementById('hypo-team2-score').value, 10);
 
     const team1 = rollerDerbyTeams[team1Id];
@@ -391,8 +400,8 @@ function calculateHypotheticalAdjustment() {
 
     if (team1 && team2 && !isNaN(team1Score) && !isNaN(team2Score)) {
         const eloSystem = new RollerDerbyElo(rollerDerbyTeams);
-        const ra = team1.ratingA;
-        const rb = team2.ratingA;
+        const ra = team1Charter === "A" ? team1.ratingA : team1.ratingB;
+        const rb = team2Charter === "A" ? team2.ratingA : team2.ratingB;
         const ea = eloSystem.expectedScore(ra, rb);
         const eb = eloSystem.expectedScore(rb, ra);
 

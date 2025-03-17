@@ -11,9 +11,9 @@
     }
 
     table {
-      width: 100%;
+      width: 75%;
       border-collapse: collapse;
-      margin: 20px 0;
+      margin: 20px auto;
     }
 
     th,
@@ -32,7 +32,6 @@
 <body>
   <h1>Roller Derby Elo Rankings</h1>
   <div id="mrda">
-    <h2>MRDA</h2>
     <table>
       <thead>
         <tr>
@@ -52,9 +51,17 @@
     <h2>Calculate Expected Score</h2>
     <label for="team1">Select Team 1:</label>
     <select id="team1"></select>
+    <select id="team1-charter">
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </select>
     <br><br>
     <label for="team2">Select Team 2:</label>
     <select id="team2"></select>
+    <select id="team2-charter">
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </select>
     <br><br>
     <button onclick="calculateExpectedScore()">Calculate Expected Score</button>
     <p id="score-result"></p>
@@ -65,12 +72,20 @@
     <h2>Hypothetical Score Adjustment</h2>
     <label for="hypo-team1">Select Team 1:</label>
     <select id="hypo-team1"></select>
+    <select id="hypo-team1-charter">
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </select>
     <br><br>
     <label for="hypo-team1-score">Team 1 Score:</label>
     <input type="number" id="hypo-team1-score" />
     <br><br>
     <label for="hypo-team2">Select Team 2:</label>
     <select id="hypo-team2"></select>
+    <select id="hypo-team2-charter">
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </select>
     <br><br>
     <label for="hypo-team2-score">Team 2 Score:</label>
     <input type="number" id="hypo-team2-score" />
