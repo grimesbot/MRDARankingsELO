@@ -276,7 +276,7 @@ async function main() {
     //console.log(currentDate); 
     const apiUrl = 'https://api.mrda.org/v1-public/sanctioning/algorithm?start-date=03/01/2023&end-date=' + `${currentDate}`;
     console.log(apiUrl);
-    const apiUrl2 = 'https://api.mrda.org/v1-public/sanctioning/algorithm?start-date=03/01/2023&end-date=' + `${currentDate}` + '&status=3';
+    const apiUrl2 = 'https://api.mrda.org/v1-public/sanctioning/algorithm?start-date=03/01/2023&end-date=' + `${currentDate}` + '&status=4';
     console.log(apiUrl2);
     //let games = await fetchGames(apiUrl);
 
