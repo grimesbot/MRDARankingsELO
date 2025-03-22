@@ -234,6 +234,12 @@ async function main() {
     rollerDerbyTeams['17909'] = new RollerDerbyTeam('Borderland Bandits Roller Derby', 743, 400, '17909');
     rollerDerbyTeams['17910'] = new RollerDerbyTeam('Nordicks de Touraine', 600, 300, '17910');
     rollerDerbyTeams['17911'] = new RollerDerbyTeam('Roller Derby Toulouse', 825, 300, '17911');
+    rollerDerbyTeams['17912'] = new RollerDerbyTeam('Tampa Roller Derby', 650, 300, '17912');
+    rollerDerbyTeams['17913'] = new RollerDerbyTeam('Southern Discomfort Roller Derby', 879, 300, '17913');
+    rollerDerbyTeams['17914'] = new RollerDerbyTeam('Dallas Derby Devils', 760, 300, '17914');
+    rollerDerbyTeams['17915'] = new RollerDerbyTeam('Roller Derby Nantes Atlantique', 575, 300, '17915');
+    rollerDerbyTeams['17916'] = new RollerDerbyTeam('Orcet Roller Derby', 670, 300, '17916');
+    rollerDerbyTeams['17917'] = new RollerDerbyTeam('Wirral Roller Derby', 725, 300, '17917');
 
 
     function getTeamRatingById(teamId) {
@@ -270,7 +276,7 @@ async function main() {
     //console.log(currentDate); 
     const apiUrl = 'https://api.mrda.org/v1-public/sanctioning/algorithm?start-date=03/01/2023&end-date=' + `${currentDate}`;
     console.log(apiUrl);
-    const apiUrl2 = 'https://api.mrda.org/v1-public/sanctioning/algorithm?start-date=03/01/2023&end-date=' + `${currentDate}` + '&status=4';
+    const apiUrl2 = 'https://api.mrda.org/v1-public/sanctioning/algorithm?start-date=03/01/2023&end-date=' + `${currentDate}` + '&status=3';
     console.log(apiUrl2);
     //let games = await fetchGames(apiUrl);
 
