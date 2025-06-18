@@ -138,7 +138,7 @@ class RollerDerbyElo {
 
 }
 
-async function fetchGames(apiUrl) {
+async function fetchGames(apiUrl, apiUrl2) {
     try {
         let response = await fetch(apiUrl);
         if (!response.ok) {
@@ -146,8 +146,17 @@ async function fetchGames(apiUrl) {
         }
         let data = await response.json();
 
+        let response2 = await fetch(apiUrl2);
+        if (!response2.ok) {
+            throw new Error(`HTTP error! status: ${response2.status}`);
+        }
+        let data2 = await response2.json();
+
+        let sortedPayloads = data.payload.concat(data2.payload).sort((a, b) => 
+            new Date(a.event.game_datetime) - new Date(b.event.game_datetime));
+
         // Create an object to hold games grouped by sanctioning_id
-        let groupedGames = data.payload.reduce((acc, game) => {
+        let groupedGames = sortedPayloads.reduce((acc, game) => {
             let sanctioningId = game.event.sanctioning_id;
             if (!acc[sanctioningId]) {
                 acc[sanctioningId] = [];
@@ -282,7 +291,7 @@ async function main() {
 
     let eloSystem = new RollerDerbyElo(rollerDerbyTeams);
 
-    let groupedGames = await fetchGames(apiUrl);
+    let groupedGames = await fetchGames(apiUrl, apiUrl2);
 
     groupedGames.forEach(group => {
         console.log(`Processing games for sanctioning ID: ${group.sanctioningId}`);
@@ -290,13 +299,6 @@ async function main() {
         eloSystem.updateRatings(group.games);
     });
 
-    let groupedGames2 = await fetchGames(apiUrl2);
-
-    groupedGames2.forEach(group => {
-        console.log(`Processing games for sanctioning ID: ${group.sanctioningId}`);
-        console.log(`Games: ${group.games}`);
-        eloSystem.updateRatings(group.games);
-    });
 
 
     //eloSystem.updateRatings(games);
