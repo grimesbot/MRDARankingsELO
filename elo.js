@@ -155,13 +155,14 @@ async function fetchGames(apiUrl, apiUrl2) {
         let sortedPayloads = data.payload.concat(data2.payload).sort((a, b) => 
             new Date(a.event.game_datetime) - new Date(b.event.game_datetime));
 
+        let result = new Map();
         // Create an object to hold games grouped by sanctioning_id
-        let groupedGames = sortedPayloads.reduce((acc, game) => {
+        sortedPayloads.forEach(game => {
             let sanctioningId = game.event.sanctioning_id;
-            if (!acc[sanctioningId]) {
-                acc[sanctioningId] = [];
+            if (!result.has(sanctioningId)) {
+                result.set(sanctioningId, { games: [] });
             }
-            acc[sanctioningId].push({
+            result.get(sanctioningId).games.push({
                 date: game.event.game_datetime,
                 teamA: game.event.home_league,
                 scoreA: game.event.home_league_score,
@@ -171,14 +172,7 @@ async function fetchGames(apiUrl, apiUrl2) {
                 charterB: game.event.away_league_charter,
                 forfeit: game.event.forfeit
             });
-            return acc;
-        }, {});
-
-        // Ensure groupedGames is correctly created and converted
-        let result = Object.keys(groupedGames).map(sanctioningId => ({
-            sanctioningId,
-            games: groupedGames[sanctioningId]
-        }));
+        });
 
         // Print the grouped games to the console for debugging
         //console.log(result);
